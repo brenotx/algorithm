@@ -64,7 +64,8 @@ public class Tests {
         assertEquals(bst.contains(11), true);
     }
 
-    @Test void testBSTDelete() {
+    @Test
+    public void testBSTDelete() {
         BinarySearchTree tree = new BinarySearchTree();
         tree.delete(1);
         assertEquals(tree.root, null);
@@ -93,6 +94,38 @@ public class Tests {
         tree.delete(30);
 
         assertEquals(tree.root.left.value, 40);
+    }
+
+    @Test
+    public void testBSTIsValid() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        assertEquals(tree.isValid(tree.root), true);
+
+        // Create following invalid BST
+        //        50
+        //       /
+        //    100
+        tree.insert(50);
+        Node n100 = new Node(100);
+        tree.root.left = n100;
+
+        assertEquals(tree.isValid(tree.root), false);
+
+
+        BinarySearchTree tree2 = new BinarySearchTree();
+
+        // Create following invalid BST
+        //        50
+        //       /  \
+        //    30     10
+        tree2.insert(50);
+        Node n10 = new Node(10);
+        Node n30 = new Node(30);
+        tree2.root.left = n30;
+        tree2.root.right = n10;
+
+        assertEquals(tree.isValid(tree2.root), false);
     }
 }
 

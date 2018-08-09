@@ -1,5 +1,6 @@
 package tree;
 
+
 /**
  * @Author Breno Teixeira
  */
@@ -53,6 +54,16 @@ public class BinarySearchTree {
      */
     void delete(int value) {
         root = deleteRecursive(this.root, value);
+    }
+
+    /**
+     * Verifies if the we have a valid BTC.
+     *
+     * @param root
+     * @return boolean
+     */
+    boolean isValid(Node root) {
+        return isValidRecursive(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private Node insertRecursive(Node root, int value){
@@ -121,6 +132,20 @@ public class BinarySearchTree {
 
     private int findSmallestValue(Node root) {
         return root.left == null ? root.value : findSmallestValue(root.left);
+    }
+
+    private boolean isValidRecursive(Node root, int min, int max) {
+
+        if (root == null) {
+            return true;
+        }
+
+        // false if this node violates the min/max constraints
+        if (root.value < min || root.value > max) {
+            return false;
+        }
+
+        return isValidRecursive(root.left, min, root.value - 1) && isValidRecursive(root.right, root.value + 1, max);
     }
 
 }
