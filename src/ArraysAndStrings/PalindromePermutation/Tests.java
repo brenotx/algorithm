@@ -42,7 +42,7 @@ public class Tests {
 
     @Test
     void testMultipleInvalidInputs() {
-        List<String> strings = Arrays.asList("Atd", "fidl", "df ig");
+        List<String> strings = Arrays.asList("Atd", "fidl", "df ig", "yhdh");
         strings.stream().forEach(u -> {
             assertEquals(
                     Solution.isPalindromePermutation(u),
