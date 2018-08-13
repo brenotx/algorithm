@@ -1,9 +1,7 @@
 package ArraysAndStrings.PalindromePermutation;
 
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  *    Problem: Given a string, write a function to check if it is a permutation
@@ -22,49 +20,31 @@ import java.util.Map;
 public class Solution {
 
     /**
-     * Eliminates the empty spaces.
-     * Creates a HashMap with the number of occurrences for each char.
-     * Iterates over the HashMap and remove the chars withs a even occurrences.
-     * If the remaining HashMap has more the one value we don't have a palindrome
-     * permutation, otherwise it is a a value string input and we return true.
+     * Go through characters in string and set flag to indicate if there is an
+     * odd number of that character. If there is more than one character with an
+     * odd number of occurrences then it cannot be a palindrome.
      *
-     * COMPLEXITY:
-     *      TIME: O(N)
-     * @param phrase phrase to be validated
-     * @return true if we have a valid palindrome permutation
+     * N = |str|
+     * Time: O(N)
+     * Additional space: O(N)
+     *
+     * @param  phrase String to check as a character array
+     * @return        True if input string is a permutation of a palindrome (ignoring spaces), otherwise false
      */
     static boolean isPalindromePermutation(String phrase) {
-        if (phrase == null || phrase.length() == 0) return false;
+        if (phrase == null) return false;
 
-        String noSpaces = phrase.replace(" ", "");
+        Set<Character> chars = new HashSet();
 
-        Map<Character, Integer> charCount = new HashMap<>();
-
-        // Creates hasmap with the count number of each chat.
-        for (int i = 0; i < noSpaces.length(); i++) {
-            char charAtCurrentIndex = noSpaces.charAt(i);
-
-            if (!charCount.containsKey(charAtCurrentIndex)) {
-               charCount.put(charAtCurrentIndex, 1);
-            } else {
-                charCount.put(charAtCurrentIndex, charCount.get(charAtCurrentIndex) + 1);
+        for (char c : phrase.toCharArray()) {
+            if (c != ' ') {
+                if (chars.contains(c)) {
+                    chars.remove(c);
+                } else {
+                    chars.add(c);
+                }
             }
         }
-
-        Iterator<Map.Entry<Character, Integer>> iter = charCount.entrySet().iterator();
-
-        while (iter.hasNext()) {
-            Map.Entry<Character, Integer> entry = iter.next();
-            if (entry.getValue() % 2 == 0) {
-               iter.remove();
-            }
-        }
-
-
-        if (charCount.keySet().size() > 1) {
-            return false;
-        }
-
-        return true;
+        return chars.size() <= 1;
     }
 }
