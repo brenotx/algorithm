@@ -10,7 +10,7 @@ package ArraysAndStrings.URLify;
  * this operation in place.) EXAMPLE Input: "Mr John Smith     ", 13 Output:
  * "Mr%20John%20Smith"
  *
- * Solution: Start from the end and work backwards
+ * SolutionA: Start from the end and work backwards
  *
  */
 public class Solution {
