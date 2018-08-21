@@ -1,9 +1,5 @@
 package ArraysAndStrings.ZeroMatrix;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  *  Write an algorithm such that if an element in an MxN matrix is 0, its
  *  entire row and column are set to O.
@@ -14,7 +10,6 @@ public class Solution {
 
         if (matrix.length == 0 || matrix.length != matrix[0].length)
             throw new IllegalArgumentException("Invalid matrix");
-
 
         boolean[] row = new boolean[matrix.length];
         boolean[] column = new boolean[matrix[0].length];

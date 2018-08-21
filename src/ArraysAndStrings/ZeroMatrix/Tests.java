@@ -18,13 +18,6 @@ public class Tests {
         int[][] x2 = new int[2][2];
         x2 = Solution.setZeroMatrix(matrix2x2);
 
-//        for (int i = 0; i < 2; i++) {
-//            for (int j = 0; j < 2; j++) {
-//                System.out.print(x2[i][j]);
-//            }
-//            System.out.println();
-//        }
-
         assertArrayEquals(x2, zero2x2);
 
 
